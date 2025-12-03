@@ -5,6 +5,7 @@ import requests
 
 DIR_NAME = "pgsql_git"
 SOURCE_URL = "https://github.com/postgres/postgres.git"
+VERSION = 18
 
 HOME_DIR = os.path.expanduser("~")
 INSTALL_PATH = os.path.join(HOME_DIR, DIR_NAME)
@@ -25,6 +26,10 @@ def clone_source():
     os.chdir(INSTALL_PATH)
     print("\n git cloning repository ....")
     run(f"git clone {SOURCE_URL}")
+    
+    print("\n listing branches : ")
+    run("git branch -r | grep REL")
+    run(f"git checkout REL_{VERSION}_STABLE")
           
 def build_postgres():
     os.chdir(SOURCE_FOLDER)
