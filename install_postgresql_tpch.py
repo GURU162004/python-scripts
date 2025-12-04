@@ -70,6 +70,8 @@ def setup_tpch():
     os.chdir(os.path.join(TPCH_DIR,"dbgen"))
     run("make clean")
     run("make MACHINE=LINUX DATABASE=POSTGRESQL")
+
+    run(f"{BIN_DIR}/dropdb -p 5433 --if-exists tpch")
     run(f"{BIN_DIR}/createdb -p 5433 tpch")
     create_schema = "CREATE SCHEMA IF NOT EXISTS tpch;"
     run(f"{BIN_DIR}/psql -p 5433 -d tpch -c {create_schema}")
