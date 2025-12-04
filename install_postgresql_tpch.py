@@ -71,7 +71,7 @@ def setup_tpch():
     run("make clean")
     run("make MACHINE=LINUX DATABASE=POSTGRESQL")
 
-    if not os.path.exists(os.path.join(dbgen_dir, "customer.tbl")):
+    if not os.path.exists(os.path.join(TPCH_DIR,"dbgen","customer.tbl")):
         print("\nGenerating TPC-H data (scale factor 1) ...")
         run("./dbgen -s 1")
     else:
