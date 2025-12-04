@@ -35,7 +35,7 @@ def clone_source():
 def build_postgres():
     os.chdir(SOURCE_FOLDER)
     print("\n Configuring and Compiling ")
-    run(f"./configure --prefix={INSTALL_PATH}")
+    run(f"./configure --prefix={INSTALL_PATH} --with-pgport=5433")
     run("make")
     run("make install")
     
