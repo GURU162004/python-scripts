@@ -64,7 +64,7 @@ def setup_database():
 def setup_tpch():
     if not os.path.exists(TPCH_DIR):
         print("\n git cloning repository ....")
-        run(f"git clone {TPCH_URL}")
+        run(f"git clone {TPCH_URL} {TPCH_DIR}")
     else:
         print("\n tpch directory exists")
     os.chdir(os.path.join(TPCH_DIR,"dbgen"))
