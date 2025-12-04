@@ -2,16 +2,15 @@ import subprocess
 import sys
 import os
 import time
-import psycopg2
 
 DIR_NAME = "pgsql_git"
 SOURCE_URL = "https://github.com/postgres/postgres.git"
-TCPH_URL = "https://github.com/gregrahn/tpch-kit.git"
+TPCH_URL = "https://github.com/gregrahn/tpch-kit.git"
 
 HOME_DIR = os.path.expanduser("~")
 INSTALL_PATH = os.path.join(HOME_DIR, DIR_NAME)
 SOURCE_FOLDER = os.path.join(INSTALL_PATH, "postgres")
-TCPH_DIR = os.path.join(HOME_DIR, "tcph_kit")
+TPCH_DIR = os.path.join(HOME_DIR, "tcph_kit")
 DATA_DIR = os.path.join(INSTALL_PATH,"data")
 BIN_DIR = os.path.join(INSTALL_PATH,"bin")
 
@@ -62,11 +61,11 @@ def setup_database():
     else:
         print("\nPostgreSQL server is already running.")
     
-def setup_tcph():
-    if not os.path.exists(TCPH_DIR)
-        os.makedirs(TCPH_DIR)
+def setup_tpch():
+    if not os.path.exists(TPCH_DIR):
+        os.makedirs(TPCH_DIR)
         print("\n git cloning repository ....")
-        run(f"git clone {TCPH_URL}")
+        run(f"git clone {TPCH_URL}")
     os.chdir(os.path.join(INSTALL_PATH,"dbgen"))
     run("make clean")
     run("make MACHINE=LINUX DATABASE=POSTGRESQL")
@@ -78,8 +77,22 @@ def setup_tcph():
     for tbl in tables:
         file = f"{tbl}.tbl"
         sql = f"\copy {tbl} FROM '{file}' WITH (FORMAT csv, DELIMITER '|', NULL '')"
-        run(f"{BIN_DIR}/psql -p 5433 -d tpch -c {sql})
+        run(f"{BIN_DIR}/psql -p 5433 -d tpch -c {sql}")
     
+    run("cp -r queries queries_backup")
+    run("git clone https://github.com/dhuny/tpch.git temp")
+    run("cp temp/sample\ queries/*.sql queries/")
+    run("rm -rf temp")
+
+def run_queries():
+    for i in range(1,23):
+        qfile = str(i)+".sql"
+        print(f"running {qfile} ...")
+        start = time.time()
+        run(F"{BIN_DIR}/pgsql -p 5433 -d tpch -f {TPCH_DIR}/dbgen/queries/{qfile}")
+        end = time.time()
+        run_time = end - start
+        print(f"Query {qfile} executed in {run_time:.3f} seconds")
     
 if __name__=="__main__":
     clone_source()
