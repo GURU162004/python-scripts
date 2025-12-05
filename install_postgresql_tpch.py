@@ -94,8 +94,8 @@ def setup_tpch():
     
     os.makedirs(os.path.join(dbgen_dir,"sqlqueries"))
     for i in range(1,23):
-        run(f"./qgen -d {i}",cwd=dbgen)
-        run(f"./qgen 1 > /sqlqueries/{i}.sql",cwd=dbgen,quiet=True)
+        run(f"./qgen -d {i}",cwd=dbgen_dir)
+        run(f"./qgen 1 > /sqlqueries/{i}.sql",cwd=dbgen_dir,quiet=True)
 
 def run_queries():
     for i in range(1,23):
