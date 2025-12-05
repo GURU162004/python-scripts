@@ -103,7 +103,7 @@ def run_queries():
     exists = os.path.exists(results_csv)
     with open(results_file, "w", newline="") as csvfile:
         fields = ["Query","Trial1_Time(ms)","Trial2_Time(ms)","Trial3_Time(ms)","Average_Time(ms)"]
-        writer = csv.DictWriter(results_csv,fieldnames=fieldnames)
+        writer = csv.DictWriter(results_csv,fieldnames=fields)
 
         if not exists:
             writer.writeheader()
@@ -121,7 +121,7 @@ def run_queries():
                 print(f'Time: {run_time:.2f} ms')
             avg = (run_times[0] + run_times[1] + run_times[2])/3.0
             print(f"The Average Execution time of the Query {qfile} is {avg:.2f} ms")
-            writer.writerow({'Query': qfile, 'Trial1_Time(ms)': run_times[0], 'Trial1_Time(ms)': run_times[0], 'Trial1_Time(ms)': run_times[0], 'Average_Time(ms)': avg})
+            writer.writerow({'Query': qfile, 'Trial1_Time(ms)': run_times[0], 'Trial2_Time(ms)': run_times[1], 'Trial3_Time(ms)': run_times[2], 'Average_Time(ms)': avg})
     print(f"\nResults saved to: {results_csv}")
 
 if __name__=="__main__":
