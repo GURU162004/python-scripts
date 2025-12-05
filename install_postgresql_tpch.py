@@ -101,13 +101,14 @@ def setup_tpch():
 def run_queries():
     results_csv = "tpch_results.csv"
     csv_path = os.path.join(TPCH_DIR,results_csv)
-    exists = os.path.exists(csv_path)
-    with open(csv_path, "a", newline="") as results_csv:
+    
+    if os.path.exists(csv_path):
+        os.remove(csv_path)
+
+    with open(csv_path, "w", newline="") as results_csv:
         header = ["Query","Trial1_Time(ms)","Trial2_Time(ms)","Trial3_Time(ms)","Average_Time(ms)"]
         writer = csv.writer(results_csv)
-        if not exists:
-            writer.writerow(header)
-
+        writer.writerow(header)
         for i in range(1,23):
             qfile = str(i)+".sql"
             run_times = []
