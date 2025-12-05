@@ -99,18 +99,30 @@ def setup_tpch():
     run("rm -rf temp",cwd=dbgen_dir)
 
 def run_queries():
-    for i in range(1,23):
-        qfile = str(i)+".sql"
-        run_times = []
-        for r in range(3):
-            print(f"Trial {r+1}: Query {qfile} executing...")
-            cmd = f'{BIN_DIR}/psql -p 5433 -q -t -d tpch -c "\\timing on" -f {TPCH_DIR}/dbgen/queries/{qfile} | grep "Time:"'
-            res = subprocess.run(cmd,shell=True,check=True,text=True,stdout = subprocess.PIPE)
-            output = res.stdout.split(' ')
-            run_time = float(output[1])
-            run_times.append(run_time)
-        avg = (run_times[0] + run_times[1] + run_times[2])/3.0
-        print(f"The Average Execution time of the Query {qfile} is {avg:3f} seconds")
+    results_csv = os.path.join(TPCH_DIR, "tpch_results.csv")
+    exists = os.path.exists(results_csv)
+    with open(results_file, "w", newline="") as csvfile:
+        fields = ["Query","Trial1_Time(ms)","Trial2_Time(ms)","Trial3_Time(ms)","Average_Time(ms)"]
+        writer = csv.DictWriter(results_csv,fieldnames=fieldnames)
+
+        if not exists:
+            writer.writeheader()
+
+        for i in range(1,23):
+            qfile = str(i)+".sql"
+            run_times = []
+            for r in range(3):
+                print(f"Trial {r+1}: Query {qfile} executing...")
+                cmd = f'{BIN_DIR}/psql -p 5433 -q -t -d tpch -c "\\timing on" -f {TPCH_DIR}/dbgen/queries/{qfile} | grep "Time:"'
+                res = subprocess.run(cmd,shell=True,check=True,text=True,stdout = subprocess.PIPE,stderr=subprocess.STDOUT)
+                output = res.stdout.split(' ')
+                run_time = float(output[1])
+                run_times.append(run_time)
+                print(f'Time: {run_time:.2f} ms')
+            avg = (run_times[0] + run_times[1] + run_times[2])/3.0
+            print(f"The Average Execution time of the Query {qfile} is {avg:.2f} ms")
+            writer.writerow({'Query': qfile, 'Trial1_Time(ms)': run_times[0], 'Trial1_Time(ms)': run_times[0], 'Trial1_Time(ms)': run_times[0], 'Average_Time(ms)': avg})
+    print(f"\nResults saved to: {results_csv}")
 
 if __name__=="__main__":
     clone_source()
