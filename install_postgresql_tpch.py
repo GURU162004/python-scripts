@@ -99,14 +99,14 @@ def setup_tpch():
     run("rm -rf temp",cwd=dbgen_dir)
 
 def run_queries():
-    results_csv = os.path.join(TPCH_DIR, "tpch_results.csv")
-    exists = os.path.exists(results_csv)
-    with open(results_csv, "w", newline="") as csvfile:
-        fields = ["Query","Trial1_Time(ms)","Trial2_Time(ms)","Trial3_Time(ms)","Average_Time(ms)"]
-        writer = csv.DictWriter(results_csv,fieldnames=fields)
-
+    results_csv = "tpch_results.csv"
+    csv_path = os.path.join(TPCH_DIR,results_csv)
+    exists = os.path.exists(csv_path)
+    with open(csv_path, "a", newline="") as results_csv:
+        header = ["Query","Trial1_Time(ms)","Trial2_Time(ms)","Trial3_Time(ms)","Average_Time(ms)"]
+        writer = csv.writer(results_csv)
         if not exists:
-            writer.writeheader()
+            writer.writerow(header)
 
         for i in range(1,23):
             qfile = str(i)+".sql"
@@ -121,7 +121,7 @@ def run_queries():
                 print(f'Time: {run_time:.2f} ms')
             avg = (run_times[0] + run_times[1] + run_times[2])/3.0
             print(f"The Average Execution time of the Query {qfile} is {avg:.2f} ms")
-            writer.writerow({'Query': qfile, 'Trial1_Time(ms)': run_times[0], 'Trial2_Time(ms)': run_times[1], 'Trial3_Time(ms)': run_times[2], 'Average_Time(ms)': avg})
+            writer.writerow([qfile] + run_times + [avg])
     print(f"\nResults saved to: {results_csv}")
 
 if __name__=="__main__":

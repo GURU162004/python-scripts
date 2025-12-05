@@ -431,3 +431,24 @@
 2025-12-05 15:40:32.443 IST [16045] LOG:  checkpoints are occurring too frequently (17 seconds apart)
 2025-12-05 15:40:32.443 IST [16045] HINT:  Consider increasing the configuration parameter "max_wal_size".
 2025-12-05 15:40:32.443 IST [16045] LOG:  checkpoint starting: wal
+2025-12-05 15:41:10.604 IST [16045] LOG:  checkpoint complete: wrote 6302 buffers (38.5%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 33 recycled; write=38.064 s, sync=0.057 s, total=38.162 s; sync files=18, longest=0.031 s, average=0.004 s; distance=539300 kB, estimate=540052 kB; lsn=E/20DBB5E0, redo lsn=E/303D100
+2025-12-05 15:41:12.518 IST [16045] LOG:  checkpoint starting: wal
+2025-12-05 15:41:15.931 IST [87564] FATAL:  terminating autovacuum process due to administrator command
+2025-12-05 15:41:15.931 IST [87564] CONTEXT:  while scanning block 12529 of relation "public.partsupp"
+2025-12-05 15:41:16.071 IST [16045] LOG:  checkpoint complete: wrote 315 buffers (1.9%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 33 recycled; write=3.506 s, sync=0.001 s, total=3.553 s; sync files=1, longest=0.001 s, average=0.001 s; distance=541788 kB, estimate=541788 kB; lsn=E/262A85B0, redo lsn=E/241543E8
+2025-12-05 15:41:16.071 IST [16045] LOG:  checkpoint starting: immediate force wait
+2025-12-05 15:41:16.080 IST [16045] LOG:  checkpoint complete: wrote 1 buffers (0.0%), wrote 0 SLRU buffers; 0 WAL file(s) added, 0 removed, 2 recycled; write=0.001 s, sync=0.001 s, total=0.010 s; sync files=1, longest=0.001 s, average=0.001 s; distance=34128 kB, estimate=491022 kB; lsn=E/262A8680, redo lsn=E/262A8628
+2025-12-05 15:41:35.476 IST [16045] LOG:  checkpoints are occurring too frequently (19 seconds apart)
+2025-12-05 15:41:35.476 IST [16045] HINT:  Consider increasing the configuration parameter "max_wal_size".
+2025-12-05 15:41:35.476 IST [16045] LOG:  checkpoint starting: wal
+2025-12-05 15:41:52.234 IST [16045] LOG:  checkpoint complete: wrote 3025 buffers (18.5%), wrote 1 SLRU buffers; 0 WAL file(s) added, 1 removed, 32 recycled; write=16.308 s, sync=0.383 s, total=16.759 s; sync files=316, longest=0.181 s, average=0.002 s; distance=541504 kB, estimate=541504 kB; lsn=E/660FC318, redo lsn=E/473788E8
+2025-12-05 15:41:53.055 IST [16045] LOG:  checkpoints are occurring too frequently (18 seconds apart)
+2025-12-05 15:41:53.055 IST [16045] HINT:  Consider increasing the configuration parameter "max_wal_size".
+2025-12-05 15:41:53.055 IST [16045] LOG:  checkpoint starting: wal
+2025-12-05 15:42:09.618 IST [16045] LOG:  checkpoint complete: wrote 6089 buffers (37.2%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 33 recycled; write=16.324 s, sync=0.195 s, total=16.564 s; sync files=16, longest=0.137 s, average=0.013 s; distance=541297 kB, estimate=541483 kB; lsn=E/8661F268, redo lsn=E/68414D18
+2025-12-05 15:42:11.186 IST [16045] LOG:  checkpoints are occurring too frequently (18 seconds apart)
+2025-12-05 15:42:11.186 IST [16045] HINT:  Consider increasing the configuration parameter "max_wal_size".
+2025-12-05 15:42:11.186 IST [16045] LOG:  checkpoint starting: wal
+2025-12-05 15:42:50.881 IST [16045] LOG:  checkpoint complete: wrote 2239 buffers (13.7%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 33 recycled; write=39.629 s, sync=0.024 s, total=39.695 s; sync files=15, longest=0.011 s, average=0.002 s; distance=537323 kB, estimate=541067 kB; lsn=E/A6D07150, redo lsn=E/890CFAF0
+2025-12-05 15:42:52.729 IST [16045] LOG:  checkpoint starting: wal
+2025-12-05 15:46:08.911 IST [16045] LOG:  checkpoint complete: wrote 4271 buffers (26.1%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 33 recycled; write=196.137 s, sync=0.003 s, total=196.182 s; sync files=22, longest=0.001 s, average=0.001 s; distance=540327 kB, estimate=540993 kB; lsn=E/BB6274B8, redo lsn=E/AA079908
