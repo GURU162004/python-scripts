@@ -303,3 +303,24 @@
 2025-12-05 14:28:12.967 IST [16045] LOG:  checkpoint starting: wal
 2025-12-05 14:28:24.072 IST [72023] ERROR:  canceling statement due to user request
 2025-12-05 14:28:24.072 IST [72023] STATEMENT:  select s_acctbal, s_name, n_name, p_partkey, p_mfgr, s_address, s_phone, s_comment from PART, SUPPLIER, PARTSUPP, NATION, REGION where p_partkey = ps_partkey and s_suppkey = ps_suppkey and p_size = 15 and p_type like '%BRASS' and s_nationkey = n_nationkey and n_regionkey = r_regionkey and r_name = 'EUROPE' and ps_supplycost = (select min(ps_supplycost) from PARTSUPP, SUPPLIER, NATION, REGION where p_partkey = ps_partkey and s_suppkey = ps_suppkey and s_nationkey = n_nationkey and n_regionkey = r_regionkey and r_name = 'EUROPE') order by s_acctbal desc, n_name, s_name, p_partkey limit 100;
+2025-12-05 14:31:21.142 IST [16045] LOG:  checkpoint complete: wrote 10143 buffers (61.9%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 33 recycled; write=188.113 s, sync=0.001 s, total=188.175 s; sync files=1, longest=0.001 s, average=0.001 s; distance=540619 kB, estimate=540710 kB; lsn=9/DB282BF0, redo lsn=9/C34044B0
+2025-12-05 14:31:21.142 IST [16045] LOG:  checkpoint starting: immediate force wait
+2025-12-05 14:31:21.178 IST [16045] LOG:  checkpoint complete: wrote 1 buffers (0.0%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 24 recycled; write=0.001 s, sync=0.002 s, total=0.037 s; sync files=2, longest=0.001 s, average=0.001 s; distance=391673 kB, estimate=525806 kB; lsn=9/DB282CC0, redo lsn=9/DB282C68
+2025-12-05 14:31:36.801 IST [16045] LOG:  checkpoints are occurring too frequently (15 seconds apart)
+2025-12-05 14:31:36.801 IST [16045] HINT:  Consider increasing the configuration parameter "max_wal_size".
+2025-12-05 14:31:36.801 IST [16045] LOG:  checkpoint starting: wal
+2025-12-05 14:31:50.759 IST [16045] LOG:  checkpoint complete: wrote 3025 buffers (18.5%), wrote 1 SLRU buffers; 0 WAL file(s) added, 1 removed, 32 recycled; write=13.422 s, sync=0.437 s, total=13.959 s; sync files=316, longest=0.173 s, average=0.002 s; distance=539604 kB, estimate=539604 kB; lsn=A/1B7F9B70, redo lsn=9/FC177FD8
+2025-12-05 14:31:51.253 IST [16045] LOG:  checkpoints are occurring too frequently (15 seconds apart)
+2025-12-05 14:31:51.253 IST [16045] HINT:  Consider increasing the configuration parameter "max_wal_size".
+2025-12-05 14:31:51.255 IST [16045] LOG:  checkpoint starting: wal
+2025-12-05 14:32:02.398 IST [16045] LOG:  checkpoint complete: wrote 2254 buffers (13.8%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 33 recycled; write=10.941 s, sync=0.162 s, total=11.146 s; sync files=16, longest=0.081 s, average=0.011 s; distance=540164 kB, estimate=540164 kB; lsn=A/3BD06358, redo lsn=A/1D0F9118
+2025-12-05 14:32:02.781 IST [16045] LOG:  checkpoints are occurring too frequently (11 seconds apart)
+2025-12-05 14:32:02.781 IST [16045] HINT:  Consider increasing the configuration parameter "max_wal_size".
+2025-12-05 14:32:02.781 IST [16045] LOG:  checkpoint starting: wal
+2025-12-05 14:32:25.725 IST [16045] LOG:  checkpoint complete: wrote 304 buffers (1.9%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 33 recycled; write=22.784 s, sync=0.008 s, total=22.945 s; sync files=7, longest=0.008 s, average=0.002 s; distance=543869 kB, estimate=543869 kB; lsn=A/5C38E288, redo lsn=A/3E418878
+2025-12-05 14:32:26.320 IST [16045] LOG:  checkpoints are occurring too frequently (24 seconds apart)
+2025-12-05 14:32:26.320 IST [16045] HINT:  Consider increasing the configuration parameter "max_wal_size".
+2025-12-05 14:32:26.320 IST [16045] LOG:  checkpoint starting: wal
+2025-12-05 14:33:04.470 IST [73026] ERROR:  canceling statement due to user request
+2025-12-05 14:33:04.470 IST [73026] STATEMENT:  select s_acctbal, s_name, n_name, p_partkey, p_mfgr, s_address, s_phone, s_comment from PART, SUPPLIER, PARTSUPP, NATION, REGION where p_partkey = ps_partkey and s_suppkey = ps_suppkey and p_size = 15 and p_type like '%BRASS' and s_nationkey = n_nationkey and n_regionkey = r_regionkey and r_name = 'EUROPE' and ps_supplycost = (select min(ps_supplycost) from PARTSUPP, SUPPLIER, NATION, REGION where p_partkey = ps_partkey and s_suppkey = ps_suppkey and s_nationkey = n_nationkey and n_regionkey = r_regionkey and r_name = 'EUROPE') order by s_acctbal desc, n_name, s_name, p_partkey limit 100;
+2025-12-05 14:36:56.125 IST [16045] LOG:  checkpoint complete: wrote 10385 buffers (63.4%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 33 recycled; write=269.749 s, sync=0.001 s, total=269.806 s; sync files=23, longest=0.001 s, average=0.001 s; distance=537804 kB, estimate=543263 kB; lsn=A/76F75858, redo lsn=A/5F14B8A8

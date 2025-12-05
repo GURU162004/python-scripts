@@ -2,6 +2,7 @@ import subprocess
 import sys
 import os
 import time
+import csv
 
 DIR_NAME = "pgsql_git"
 SOURCE_URL = "https://github.com/postgres/postgres.git"
@@ -102,11 +103,8 @@ def run_queries():
         qfile = str(i)+".sql"
         run_times = []
         for r in range(3):
-            print(f"running {qfile} ...")
-            start = time.time()
-            run(f'{BIN_DIR}/psql -p 5433 -q -t -d tpch -c "\\timing on" -f {TPCH_DIR}/dbgen/queries/{qfile} > /dev/null')
-            run_time = time.time()-start
-            print(f"Trial {r+1}: Query {qfile} executed in {run_time:3f} seconds")
+            print(f"Trial {r+1}: Query {qfile} executing...")
+            run(f'{BIN_DIR}/psql -p 5433 -q -t -d tpch -c "\\timing on" -f {TPCH_DIR}/dbgen/queries/{qfile} | grep "Time:"')
             run_times.append(run_time)
         avg = (run_times[0] + run_times[1] + run_times[2])/3.0
         print(f"The Average Execution time of the Query {qfile} is {avg:3f} seconds")
