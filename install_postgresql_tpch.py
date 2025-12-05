@@ -98,7 +98,7 @@ def run_queries():
         qfile = str(i)+".sql"
         print(f"running {qfile} ...")
         start = time.time()
-        run(F"{BIN_DIR}/pgsql -p 5433 -d tpch -f {TPCH_DIR}/dbgen/queries/{qfile}")
+        run(F"{BIN_DIR}/psql -p 5433 -d tpch -f {TPCH_DIR}/dbgen/queries/{qfile}")
         end = time.time()
         run_time = end - start
         print(f"Query {qfile} executed in {run_time:.3f} seconds")
